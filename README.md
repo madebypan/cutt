@@ -17,3 +17,19 @@ python3 -m venv .venv && .venv/bin/pip install faster-whisper
 - Output still needs proofreading (brand names and near-homophones),
   so check it against the script or the burned-in captions before delivery.
 - Models download from huggingface.co on first run.
+
+## Vocal / music separation
+
+`tools/separate_vocals.py` splits a track into vocals and instrumental with an
+MDX-Net ONNX model (e.g. `Kim_Vocal_2.onnx`, available on Hugging Face), using
+only numpy + onnxruntime — no PyTorch.
+
+```bash
+.venv/bin/pip install onnxruntime numpy
+.venv/bin/python tools/separate_vocals.py input.mp4 Kim_Vocal_2.onnx out/name
+# -> out/name_vocals.wav, out/name_inst.wav
+```
+
+A 39 s clip separates in about 15 s on 4 CPU cores. Useful for reusing a
+finished film's voice-over or music bed, and for transcribing live speech
+buried under music (transcribe the `_vocals.wav`).
