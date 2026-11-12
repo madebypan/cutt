@@ -1,0 +1,7 @@
+# Rendered videos, subtitles and media stay local (this repo is public)
+out/
+*.mp4
+*.mov
+*.m4a
+*.wav
+.venv/
