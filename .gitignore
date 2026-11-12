@@ -5,3 +5,4 @@ out/
 *.m4a
 *.wav
 .venv/
+__pycache__/
